@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"imports/models"
+	"imports/routes"
 	"log"
 	"net/http"
 	"os"
@@ -27,12 +28,20 @@ func main() {
 
 //Run inicia o servidor
 func (structApplication *StructApplication) Run(port string) {
+	structApplication.Initialize()
 
 	valueCors := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},
 		AllowedMethods: []string{"GET", "POST", "DELETE", "PUT", "OPTIONS"},
 	})
 
-	structApplication.Router = mux.NewRouter()
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), handlers.LoggingHandler(os.Stdout, valueCors.Handler(structApplication.Router))))
+}
+
+//Initialize representa a inicialização do app.
+func (structApplication *StructApplication) Initialize() {
+	structApplication.Router = mux.NewRouter()
+	subrouter := structApplication.Router.NewRoute().Subrouter()
+
+	routes.InitializeRoutes(subrouter)
 }
