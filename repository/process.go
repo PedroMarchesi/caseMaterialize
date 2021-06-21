@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"errors"
 	"fmt"
 	"imports/models"
 	"os"
@@ -15,7 +16,7 @@ func (p *ListProcess) WorkingWithNode() (result float64, message string, err err
 
 	//Valida se a lista informada está vazia
 	if len(p.List) == 0 {
-		return 0, "A lista informada está vazia", err
+		return 0, "A lista informada está vazia", errors.New("")
 	}
 
 	//Valida se os itens do array são numeros
