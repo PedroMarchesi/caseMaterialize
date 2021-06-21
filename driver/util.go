@@ -23,12 +23,12 @@ func (appStruct *StructApp) ResponseWithErrorJSON(responseWriter http.ResponseWr
 }
 
 //ResponseWithJSON corresponde a resposta com reposta com json
-func (appStruct *StructApp) ResponseWithJSON(responseWriter http.ResponseWriter, code int, payload interface{}, message string) {
+func (appStruct *StructApp) ResponseWithJSON(responseWriter http.ResponseWriter, code int, result float64, message string) {
 	var responseSuccess response.ResponseSuccess
 
 	responseSuccess.Message = message
 	responseSuccess.Error = nil
-	responseSuccess.Result = payload
+	responseSuccess.Result = result
 
 	response, _ := json.Marshal(responseSuccess)
 	responseWriter.Header().Set("Content-Type", "application/json")

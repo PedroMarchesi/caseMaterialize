@@ -7,5 +7,7 @@ import (
 )
 
 func Process(subrouter *mux.Router) {
-	subrouter.HandleFunc("/process", handler.Config).Methods("POST")
+
+	//Rota responsável pela execução do processo
+	subrouter.HandleFunc("/process", handler.Process).Methods("POST")
 }
