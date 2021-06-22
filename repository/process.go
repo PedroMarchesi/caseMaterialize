@@ -6,12 +6,17 @@ import (
 	"imports/models"
 	"os"
 	"strconv"
+	"sync"
 )
 
 type ListProcess models.ListProcess
 
+var count float64
+var wg sync.WaitGroup
+
 func (p *ListProcess) WorkingWithNode() (result float64, message string, err error) {
-	var count float64
+	count = 0
+
 	var list []float64
 
 	//Valida se a lista informada está vazia
@@ -36,21 +41,21 @@ func (p *ListProcess) WorkingWithNode() (result float64, message string, err err
 
 	//Busca nas variáveis do sistema a quantidade de 'nós'
 	node, _ := strconv.Atoi(os.Getenv("NODE"))
+	wg.Add(node)
 
 	//Realiza a soma dos valores da lista, de acordo com a quantidade de nós
 	for i := 1; i <= node; i++ {
-		count += Sum(list)
+		go Sum(list)
 	}
+	wg.Wait()
 
 	return count, "Operação realizada com sucesso", nil
 }
 
-func Sum(list []float64) float64 {
-	var count float64
+func Sum(list []float64) {
+	defer wg.Done()
 
 	for _, number := range list {
 		count += number
 	}
-
-	return count
 }
