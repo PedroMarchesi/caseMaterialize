@@ -1,11 +1,11 @@
 # Cases Materialize
 
 ## Descrição do Projeto
-    Cases destinados à empresa Materialize. Foi contstruida uma API para receber e fazer tratativa de dados, de acordo com o que foi solicitado pela empresa. 
+    Cases destinados à empresa Materialize. Foi construida uma API para receber e fazer tratativa de dados, de acordo com o que foi solicitado pela empresa. 
 
 ### Funcionalidades do sistema
     - Request feito ao endpoint /config/<N> (POST), onde "N" é a quantidade de 'nós' que devem ser configurados. :heavy_check_mark:
-        - O valor informado na "N" informado na rota é tratado e feito validações para checar se o valor informado é um numérico. Caso não seja informado um valor numérico, o sistema retornará um erro com a menssagem específica.
+        - O valor de "N" informado na rota é tratado e feito validações para checar se é um numérico. Caso não seja informado um valor numérico, o sistema retornará um erro com a menssagem específica.
         - Se o valor informado na rota for um valor numérico, este mesmo será salvo nas variáveis de ambiente.
         - Se a requisição for concluída com sucesso, o sistema retornará um JSON com uma mensagem de sucesso e a quantidade de 'nós' configurados.
     
@@ -33,8 +33,7 @@
         1. Quando um valor diferente de uma lista de números for passado.
         2. Quando um dos nós retorna erro.
 
-    Não consegui levantar e nem simular nenhum tipo de erro que poderia acontecer no segundo caso, com os 'nós'. Pois, todas as tratativas possíveis são feitas antes da
-    execução principal da função.
+    Não consegui levantar e nem simular nenhum tipo de erro que poderia acontecer no segundo caso, com os 'nós'. Pois, todas as tratativas possíveis são feitas antes da execução principal da função.
 
 ###### Conclusão
     Desde já, agradeço imensamente pela confiança e pela oportunidade que me deram. Espero poder contribuir com a empresa e crescermos juntos!
