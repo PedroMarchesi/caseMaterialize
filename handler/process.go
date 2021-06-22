@@ -19,10 +19,10 @@ func Process(responseWriter http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	result, message, err := p.WorkingWithNode()
+	result, message, nodeErr, err := p.WorkingWithNode()
 
 	if err != nil {
-		driver.ResponseWithErrorJSON(responseWriter, http.StatusInternalServerError, nil, message)
+		driver.ResponseWithErrorJSON(responseWriter, http.StatusInternalServerError, nodeErr, message)
 		return
 	}
 	driver.ResponseWithJSON(responseWriter, http.StatusOK, result, message)

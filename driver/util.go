@@ -10,11 +10,11 @@ import (
 type StructApp models.App
 
 //ResponseWithErrorJSON corresponde a resposta com json de Erro
-func (appStruct *StructApp) ResponseWithErrorJSON(responseWriter http.ResponseWriter, code int, payload interface{}, message string) {
+func (appStruct *StructApp) ResponseWithErrorJSON(responseWriter http.ResponseWriter, code int, nodeErr interface{}, message string) {
 	var responseError response.ResponseError
 
 	responseError.Error.Message = message
-	responseError.Node = payload
+	responseError.Node = nodeErr
 
 	response, _ := json.Marshal(responseError)
 	responseWriter.Header().Set("Content-Type", "application/json")
